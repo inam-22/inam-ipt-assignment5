@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Form</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Player Registration Form</h1>
+        <table>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td>
+                      <span>Player Name :</span>
+                    </td>
+                    <td>
+                      <input type="text" id="playerName" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span>No of Matches : </span>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        id="matches"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span>Total Innings : </span>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        id="innings"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span>Highest Score : </span>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        id="highest_score"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span>Strike Rate : </span>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        id="strike_rate"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <span></span>
+                    </td>
+                    <td >
+                        <button onclick="Submit()"
+                          >Submit</button
+                        >
+                      </td>
+                  </tr>
+                 
+                </table>
+    
+</body>
+
+
+<script>
+    function Submit() {
+
+      console.log( $("#playerName").val())
+      console.log( $("#matches").val())
+      console.log( $("#innings").val())
+      console.log( $("#highest_score").val())
+      console.log( $("#strike_rate").val())
+
+
+      $.ajax({
+        method: "POST",
+        url: "http://localhost:5000/insert-player",
+        contentType: "application/JSON",
+        data: {          
+          player_name:  $("#playerName").val(),
+          matches:  $("#matches").val(),
+          innings:  $("#innings").val(),
+          highest_score:  $("#highest_score").val(),
+          strike_rate:  $("#strike_rate").val(),
+        },
+        success: function (result) {
+          console.log(result)
+        },
+      });
+    }
+
+    </script>
+
+</html>
